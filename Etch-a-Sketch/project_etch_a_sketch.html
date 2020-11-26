@@ -3,14 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Etch a sketch</title>
 
  <style>
-     #parentDiv{
-         
-         
-         height:100vh;
-         
+     #parentDiv{   
+         height:100vh;    
      }
      
  </style>
@@ -35,7 +32,7 @@
             let div=document.createElement('div');
             div.className='box';
             row.appendChild(div);
-            div.style.cssText='border:2px solid black;width:100%;height:100%;';
+            div.style.cssText='width:100%;height:100%;';
             }
 
         }
@@ -44,7 +41,7 @@
         let boxColor=document.getElementsByClassName('box');
         
         
-        for (let i=0; i<=numberOfSquares*numberOfSquares;i++){
+        for (let i=0; i<numberOfSquares*numberOfSquares;i++){
         boxColor[i].addEventListener("mouseover",function Mouse(event){
         event.target.style.backgroundColor='rgba(255,215,0.8)'; 
         })
