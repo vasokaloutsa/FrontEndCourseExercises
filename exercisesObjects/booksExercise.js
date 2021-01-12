@@ -16,7 +16,7 @@ function addBookToLibrary(title,author,pages,state){
 }
 
 function render(){
-
+  div.innerHTML = '';
   for (let i = 0; i < bookLibrary.length ; i++){
     let row = document.createElement('tr');
     div.appendChild(row);
