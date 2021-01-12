@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+ol, ul {
+	list-style: none;
+}
+
+
+body{
+    background-color: burlywood;
+}
+h1{
+    color:rgb(57, 167, 130);
+    font-size: 2.5em;
+    text-align:center;
+}
+
+td{
+    border: 2px solid blueviolet;
+}
+
+.buttons-style{
+    display:block;
+    margin: 0 auto;
+    margin-top: 2vh;
+    padding:10px;
+    background-color:rgb(179, 255, 255);
+    color:rgb(20, 8, 7);
+    border: 3px solid green;
+    border-radius: 10%;
+}
