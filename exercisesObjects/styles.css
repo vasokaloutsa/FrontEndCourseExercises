@@ -12,7 +12,7 @@ ol, ul {
 
 
 body{
-    background-color: burlywood;
+    background-color: rgba(222, 184, 135, 0.87);
 }
 h1{
     color:rgb(57, 167, 130);
@@ -20,8 +20,18 @@ h1{
     text-align:center;
 }
 
+
+section.books-display{
+    margin-top: 10vh;
+}
+
+th{
+    font-size:1.2em;
+    color:rgb(111, 101, 255)
+}
 td{
-    border: 2px solid blueviolet;
+    min-width: 15vw;
+    border: 2px solid rgba(190, 158, 219, 0.295);
 }
 
 .buttons-style{
@@ -29,8 +39,45 @@ td{
     margin: 0 auto;
     margin-top: 2vh;
     padding:10px;
-    background-color:rgb(179, 255, 255);
+    background-color:rgba(202, 245, 245, 0.986);
     color:rgb(20, 8, 7);
-    border: 3px solid green;
+    border: 3px solid rgba(14, 151, 14, 0.596);
     border-radius: 10%;
+}
+
+.state-btn{
+    width: 100%;
+    color: white;
+    background-color:rgba(236, 195, 195, 0.507);  
+    
+}
+
+.remove-btn{
+    margin-left: 1%;
+    width: 70px;
+    border: 2px solid grey;
+    border-radius: 50px;
+    background-color:rgb(57, 167, 130);
+    color:white;
+    font-size:0.8em;
+}
+
+
+.formEl{
+    
+   margin:10px 10px;
+   border: 1px solid green;
+
+}
+
+.form-inputs{
+    align-items: center;
+}
+
+#submit-book{
+    margin: 10px 50px;
+    padding: 4px;
+    border: 1px solid green;
+    border-radius: 10%;
+    background-color:rgba(211, 241, 197, 0.87);
 }
