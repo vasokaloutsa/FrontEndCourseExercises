@@ -4,14 +4,17 @@ let bookLibrary =[];
 //functions I use ----------------------
 
 //Books: creates 1 book
-function Books(title,author,pages,state){
+class Books{
+  constructor(title,author,pages,state){
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.state = state;
-  this.info =function(){
-      return  `${title} by ${author}, ${pages}, ${state} `
+}
+  info(){
+      return  `${this.title} by ${this.author}, ${this.pages}, ${this.state} `
   }
+
 }
 
 // addBookToLibrary pushes the created book to library list
