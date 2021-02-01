@@ -17,16 +17,26 @@ function createToDoItem(title,description,dueDate,priority,state){
     toDoList.push(toDoItem);
 }
 
+function removeItem(index){
+    toDoList.splice(index,1);
+}
 
+function toggleState(index){
+    if (window.confirm(`do you want to change '${toDoList[index].state}'?`)){
+        if (toDoList[index].state.toLowerCase() === 'complete'){
+            toDoList[index].state = 'not complete';
+        
+        }else if(toDoList[index].state.toLowerCase() === 'not complete') {
+            toDoList[index].state = 'complete';
+        }
+        return toDoList[index].state;
+    }else{
+      return;
+    }      
+}
 
-// function setToDoComplete(index){
-//    toDoList(index).state = 'complete';
-// }
+function changePriority(index,priorityNumber){
+    toDoList[index].priority = priorityNumber;  
+}
 
-// function changeToDoPriority(index,preferedPriority){
-//   toDoList(index).priority = preferedPriority;
-// }
-
-export default {toDo,createToDoItem};
-// export default setToDoComplete;
-// export default changeToDoPriority;
+export default {toDo,createToDoItem,removeItem,toggleState,changePriority};
