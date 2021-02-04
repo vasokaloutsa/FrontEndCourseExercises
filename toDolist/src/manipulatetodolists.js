@@ -1,3 +1,4 @@
+import {toDoList, projectList, toDoListItem,projectItem} from "./variables"
 
 class toDo {
     constructor(title,description,dueDate,priority,state){
@@ -12,13 +13,47 @@ class toDo {
     }
 }
 
-function createToDoItem(title,description,dueDate,priority,state){
-    let toDoItem = new toDo(title,description,dueDate,priority,state);
-    toDoList.push(toDoItem);
+class doList{
+    constructor(number,title,description,dueDate,priority,state){
+        this.number = number;
+        this.title = title;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priority = priority;
+        this.state = state;
+    }
+    info(){
+        return ` ${this.number}/${this.title} / ${this.description} /${this.dueDate} / ${this.priority} / ${this.state}`; 
+    }
 }
+
+//functions that manipulate lists
+
+function createToDoItem(title,description,dueDate,priority,state){
+   return new toDo(title,description,dueDate,priority,state);  
+}
+
+function createToDoList(title,description,dueDate,priority,state){
+   toDoListItem = createToDoItem(title,description,dueDate,priority,state);
+   toDoList.push(toDoListItem);
+}
+
+function createProjectList (number,title,description,dueDate,priority,state){
+    projectItem = new doList(number,title,description,dueDate,priority,state);
+    //if i put createtolist i get another result
+    //projectItem = createToDoList(title,description,dueDate,priority,state);
+    createToDoList(title,description,dueDate,priority,state);
+    projectList.push(projectItem);
+}
+
+
 
 function removeItem(index){
     toDoList.splice(index,1);
+}
+
+function removeProject(index){
+    projectList.splice(index,1);
 }
 
 function toggleState(index){
@@ -39,4 +74,4 @@ function changePriority(index,priorityNumber){
     toDoList[index].priority = priorityNumber;  
 }
 
-export default {toDo,createToDoItem,removeItem,toggleState,changePriority};
+export {toDoList, projectList, toDoListItem, projectItem, toDo,doList,createToDoItem,createToDoList,removeItem,removeProject,createProjectList,toggleState,changePriority};

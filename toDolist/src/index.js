@@ -1,4 +1,29 @@
-// variables declaration
+// import { 
+//     toDo,
+//     doList,
+//     createToDoItem,
+//     createToDoList,
+//     removeItem,
+//     removeProject,
+//     createProjectList,
+//     toggleState,
+//     changePriority
+// }  from "./manipulatetodolists";
+
+// import{ 
+//     createProjectTable,
+//     pressNewProjectBtn,
+//     div,
+//     render,
+//     newToDoButton,
+//     newProjectBtn
+// } from "./dommanipulation";
+
+// import {toDoList, projectList, toDoListItem,projectItem,counter} from "./variables";
+
+// import * as myModule from  "./manipulatetodolists";
+
+
 let toDoList = [];
 let projectList = [];
 let toDoListItem=[];
@@ -6,8 +31,35 @@ let projectItem=[];
 let counter = 0;
 
 
-//classes
+// // console.log(localStorage.getItem("toDoListStorage"))
+// if (!localStorage.getItem("toDoListStorage")){
+//     localStorage.setItem("toDoListStorage", JSON.stringify(toDoList));
+// }else{
+//     localStorage.setItem("toDoListStorage", JSON.stringify(toDoList));
+//     toDoList = JSON.parse(localStorage.getItem("toDoListStorage"))
+// }
 
+// if(!localStorage.getItem("projectListStorage")){
+//     localStorage.setItem("projectListStorage", JSON.stringify(projectList));
+// }else{
+//     localStorage.setItem("projectListStorage", JSON.stringify(projectList));
+//     projectList = JSON.parse(localStorage.getItem("projectListStorage"))
+// }
+
+    if(localStorage){
+        
+       const storedItems = localStorage.getItem("toDoListStorage");
+        if(storedItems.length >= 0){
+        toDoList = JSON.parse(storedItems);
+        console.log(toDoList);
+            }
+    }
+// }
+
+function storeValues(list){
+    localStorage.setItem('toDoListStorage', JSON.stringify(list));
+    
+}
 class toDo {
     constructor(title,description,dueDate,priority,state){
         this.title = title;
@@ -44,17 +96,16 @@ function createToDoItem(title,description,dueDate,priority,state){
 function createToDoList(title,description,dueDate,priority,state){
    toDoListItem = createToDoItem(title,description,dueDate,priority,state);
    toDoList.push(toDoListItem);
+//    localStorage.setItem("toDoListStorage", JSON.stringify(toDoList));
 }
 
 function createProjectList (number,title,description,dueDate,priority,state){
     projectItem = new doList(number,title,description,dueDate,priority,state);
-    //createToDoList(title,description,dueDate,priority,state);
-    // projectItem = createToDoList(title,description,dueDate,priority,state);
+    //if i put createtolist i get another result
+    //projectItem = createToDoList(title,description,dueDate,priority,state);
+    createToDoList(title,description,dueDate,priority,state);
     projectList.push(projectItem);
-
-    // let projectNumber = new project(name);
-    // projectList.push(projectNumber);
-    // projectNumber.push(toDoList);
+    // localStorage.setItem("projectListStorage", JSON.stringify(projectList));
 }
 
 
@@ -63,9 +114,10 @@ function removeItem(index){
     toDoList.splice(index,1);
 }
 
-function removeProject(index2){
-    projectList.splice(index2,1);
+function removeProject(index){
+    projectList.splice(index,1);
 }
+
 function toggleState(index){
     if (window.confirm(`do you want to change '${toDoList[index].state}'?`)){
         if (toDoList[index].state.toLowerCase() === 'complete'){
@@ -83,6 +135,14 @@ function toggleState(index){
 function changePriority(index,priorityNumber){
     toDoList[index].priority = priorityNumber;  
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -126,8 +186,8 @@ function render (){
                 row.innerHTML =   `<td>${toDoList[i].title}</td>
                                     <td>${toDoList[i].description}</td>
                                     <td>${toDoList[i].dueDate}</td>
-                                    <td ><input id = "priorityBtn${i}" class = "priority-btn" type = 'number' value = ${toDoList[i].priority} ></td>
-                                    <td><button id = "stateBtn${i}" class = "state-btn" >${toDoList[i].state}</button></td>
+                                    <td ><input id = "priorityBtn${i}${j}" class = "priority-btn" type = 'number' value = ${toDoList[i].priority} ></td>
+                                    <td><button id = "stateBtn${i}${j}" class = "state-btn" >${toDoList[i].state}</button></td>
                                     <button id = "removebtn${i}${j}" class = "remove-btn" > Remove </button>`;
                                     
                 
@@ -138,13 +198,13 @@ function render (){
                         render();
                     })
     
-                    let stateBtn = document.querySelector(`#stateBtn${i}`);
+                    let stateBtn = document.querySelector(`#stateBtn${i}${j}`);
                     stateBtn.addEventListener('click', ()=>{
                         toggleState(i);  
                         render(); 
                     })
     
-                    let priorityBtn = document.querySelector (`#priorityBtn${i}`);
+                    let priorityBtn = document.querySelector (`#priorityBtn${i}${j}`);
                     priorityBtn.addEventListener('click',()=>{  
                         changePriority(i,priorityBtn.value);
                     })
@@ -166,6 +226,7 @@ newToDoButton.addEventListener('click', ()=> {
         
     let  submitBtn = document.querySelector('#submit-toDo');
     submitBtn.addEventListener('click' , ()=>{
+        storeValues(toDoList);
         createToDoList(document.getElementById('title').value,document.getElementById('description').value,document.getElementById('dueDate').value,document.getElementById('priority').value,document.getElementById('state').value);
         toDoForm.innerHTML = '';
         toDoForm.style.cssText = 'style:none';
@@ -175,27 +236,20 @@ newToDoButton.addEventListener('click', ()=> {
 
 const newProjectBtn = document.querySelector(".project-btn");
     newProjectBtn.addEventListener('click', ()=>{
+        //storeValues(projectList);
         pressNewProjectBtn();
         render();
     })
 
 
-// createProject('1');
-//createToDoItem('title44','description3','dueDateefefe','12','complete');
-//createToDoItem ('title155','g5gh','235/2','51','complete');
-// createProject('2');
-// createToDoList('trel','test1','now','3','complete')
-// createToDoList('test2','test2','now','1','complete')
-createProjectList('1','test2','test2','now','1','complete');
-
-
-createProjectList('1','t34','test2','now','1','complete');
-createProjectList('2','t34','test2','now','1','complete');
-createToDoList('heee');
+createProjectList('1','title','description','dueDate','2','complete');
+createProjectList('1','tit67tle','duu88escription','dueDate','2','complete');
+createProjectList('2','tyuyhbjitle','description','dueDateuo','2','complete');
+createToDoList('title','description','dueDate','2','complete');
 
 
 render();
-console.log(toDoList);
-console.log(projectList);
+//console.log(toDoList);
+//console.log(projectList);
 
 //console.log(projectList);
