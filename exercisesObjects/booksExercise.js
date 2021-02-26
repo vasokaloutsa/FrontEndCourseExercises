@@ -10,13 +10,13 @@ function Books(title,author,pages,state){
   this.pages = pages;
   this.state = state;
   this.info =function(){
-      return  `${title} by ${author}, ${pages}, ${state} `
-  }
+      return  `${title} by ${author}, ${pages}, ${state} `;
+  };
 }
 
 // addBookToLibrary pushes the created book to library list
 function addBookToLibrary(title,author,pages,state){
-  let book = new Books (title,author,pages,state);
+  const book = new Books(title,author,pages,state);
   bookLibrary.push(book);
 }
 
@@ -63,6 +63,8 @@ function toggleState(ind){
       
       }else if(bookLibrary[ind].state.toLowerCase() === 'read') {
         bookLibrary[ind].state = 'not read yet';
+      }else {
+        bookLibrary[ind].state = 'not read yet';
       }
       return bookLibrary[ind].state;
   }else{
@@ -86,7 +88,7 @@ newBookButton.addEventListener('click', ()=> {
     document.querySelector(".bform").appendChild(bookForm);
     bookForm.innerHTML = `<section class = "form-inputs"><input type = 'text' id = 'title' class = 'formEl' name = 'title' placeholder ='Book title'>
                           <input type = 'text' id = 'author' class = 'formEl' name = 'author' placeholder ='Author name'>
-                          <input type = 'text' id = 'pages' class = 'formEl' name = 'pages' placeholder ='Number of pages'> 
+                          <input type = 'number' id = 'pages' class = 'formEl' name = 'pages' placeholder ='Number of pages'> 
                           <input type = 'text' id = 'state' class = 'formEl' name = 'state'  placeholder ='Is it read or unread'>
                           <button type = 'submit' id ='submit-book' >Submit book</button></section>`
     bookForm.style.cssText = " display: block;   margin:0 auto;  margin-top:20px;  width:80%;  min-height: 40px;  border:1px solid green;"
@@ -94,7 +96,12 @@ newBookButton.addEventListener('click', ()=> {
   // addBookToLibrary(document.getElementById('title').value,document.getElementById('author').value,document.getElementById('pages').value,document.getElementById('state').value);
     let  submitBtn = document.querySelector('#submit-book');
     submitBtn.addEventListener('click' , ()=>{
-      addBookToLibrary(document.getElementById('title').value,document.getElementById('author').value,document.getElementById('pages').value,document.getElementById('state').value);
+      addBookToLibrary(
+         document.getElementById('title').value,
+         document.getElementById('author').value,
+         document.getElementById('pages').value,
+         document.getElementById('state').value
+      );
       bookForm.innerHTML = '';
       bookForm.style.cssText = 'style:none';
       render();
