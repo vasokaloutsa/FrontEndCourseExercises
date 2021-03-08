@@ -1,0 +1,5 @@
+class GameBoard{
+    constructor(board){
+
+    }
+}
