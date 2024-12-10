@@ -3,14 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Etch a sketch</title>
 
  <style>
-     #parentDiv{
-         
-         
-         height:100vh;
-         
+     #parentDiv{   
+         height:100vh;    
      }
      
  </style>
@@ -24,13 +21,14 @@
     let gridSize=window.prompt('Please enter the number of squares per side you want your sketch grid to have.( P.S : if you put a large number just be patient 🦖 )')
   
     function sizeOfGrid(numberOfSquares){
+        
         //grid 
         let elem=document.querySelector('div');
-        for (let i=0;i<=numberOfSquares;i++){   
+        for (let i=0;i<numberOfSquares;i++){   
             let row=document.createElement('div'); 
             elem.appendChild(row);  
             row.style.cssText=`display:flex;flex-direction:row;height:${100/numberOfSquares}vh;`;  //1)create 16 rows
-            for (let j=0;j<=numberOfSquares;j++){                   //2) in each row display 16 boxes
+            for (let j=0;j<numberOfSquares;j++){                   //2) in each row display 16 boxes
             let div=document.createElement('div');
             div.className='box';
             row.appendChild(div);
@@ -43,30 +41,25 @@
         let boxColor=document.getElementsByClassName('box');
         
         
-        for (let i=0; i<=numberOfSquares*numberOfSquares;i++){
+        for (let i=0; i<numberOfSquares*numberOfSquares;i++){
         boxColor[i].addEventListener("mouseover",function Mouse(event){
         event.target.style.backgroundColor='rgba(255,215,0.8)'; 
         })
 
         }
+
         //create reset button
 
-     let resetButton= document.createElement('button');
-     resetButton.innerHTML='Reset';
-     let buttonPosition=document.getElementById('parentDiv');
-     buttonPosition.appendChild(resetButton);
-     resetButton.style.cssText='position:fixed;top:0%; padding:15px; color:black;';
-     resetButton.addEventListener('click',()=>{window.location.reload();} );
+       let resetButton= document.createElement('button');
+       resetButton.innerHTML='Reset';
+       let buttonPosition=document.getElementById('parentDiv');
+       buttonPosition.appendChild(resetButton);
+       resetButton.style.cssText='position:fixed;top:0%; padding:15px; color:black;';
+       resetButton.addEventListener('click',()=>{window.location.reload();} );
     }   
 
 
-     sizeOfGrid(gridSize);
-
-     
-     
-     
-     
-     
+     sizeOfGrid(gridSize);     
     
   </script>
 </body>
